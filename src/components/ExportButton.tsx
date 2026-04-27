@@ -1,9 +1,9 @@
 import { Download, Loader2 } from "lucide-react";
 import { useState, useCallback } from "react";
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function ExportButton() {
-  if (import.meta.env.PROD) return null;
-
+  const { t } = useLanguage();
   const [loading, setLoading] = useState(false);
 
   const handleExport = useCallback(async () => {
@@ -31,6 +31,8 @@ export default function ExportButton() {
     }
   }, []);
 
+  if (import.meta.env.PROD) return null;
+
   return (
     <button
       onClick={handleExport}
@@ -38,7 +40,7 @@ export default function ExportButton() {
       className="flex items-center gap-1.5 px-3 py-2 rounded-full font-mono-brand text-[11px] tracking-wide text-muted-foreground hover:text-foreground border border-transparent hover:border-border/50 transition-all duration-200 disabled:opacity-50"
     >
       {loading ? <Loader2 size={14} className="animate-spin" /> : <Download size={14} />}
-      {loading ? "Export…" : "Export"}
+      {loading ? t.exportingLabel : t.exportLabel}
     </button>
   );
 }
