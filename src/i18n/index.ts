@@ -7,6 +7,6 @@ export type Language = keyof typeof translations;
 
 export const SUPPORTED_LANGUAGES: readonly Language[] = ["de", "en"] as const;
 
-export const DEFAULT_LANGUAGE: Language = "de";
+export const DEFAULT_LANGUAGE: Language = "en";
 
 export type { Translation, LayerText, DepartmentText } from "./types";
